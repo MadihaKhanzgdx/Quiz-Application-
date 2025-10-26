@@ -1,4 +1,4 @@
-// app.js
+
 import { db, collection, addDoc } from "./firebaseConfig.js";
 
 const questions = [
@@ -72,7 +72,6 @@ async function showQuestion() {
   let questionNo = currentQuestionIndex + 1;
   questionElement.innerHTML = `${questionNo}. ${currentQuestion.question}`;
 
-  // 🔥 Save question to Firestore
   try {
     await addDoc(collection(db, "questions"), {
       questionNo,
@@ -116,7 +115,6 @@ async function selectAnswer(e) {
     selectedBtn.classList.add("incorrect");
   }
 
-  // 🔥 Save answer to Firestore
   try {
     await addDoc(collection(db, "answers"), {
       question: questionText,
@@ -144,7 +142,7 @@ async function showScore() {
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
 
-  // 🔥 Save result to Firestore
+
   try {
     await addDoc(collection(db, "results"), {
       score,
